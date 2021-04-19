@@ -1,0 +1,47 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ri0\partightenfactor0
+
+\f0\fs22 \cf0 gnuplot> set pm3d\
+gnuplot> Q1= 15380000\
+\
+gnuplot> a=(156+104)/2\
+gnuplot> c1=106.6\
+gnuplot> c2=61\
+gnuplot> d1=1.149\
+gnuplot> d2=0.911\
+gnuplot> f1=3.3\
+gnuplot> s_y1(x)=a*((x*10**(-3))**0.894)  \
+gnuplot> s_z1(x)=((c1*((x*10**(-3))**d1)+c2*((x*10**(-3))**d2))/2)+f1  \
+\pard\pardeftab720\ri0\sl259\slmult1\partightenfactor0
+\cf0 gnuplot> Q2=988000\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ri0\partightenfactor0
+\cf0 gnuplot> u_H1=4.59\
+\pard\pardeftab720\ri0\sl259\slmult1\partightenfactor0
+\cf0 gnuplot> u_H2=4.27\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ri0\partightenfactor0
+\cf0 gnuplot> H1=336.41 \
+\pard\pardeftab720\ri0\sl259\slmult1\partightenfactor0
+\cf0 gnuplot> H2=79.46\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sl259\slmult1\partightenfactor0
+\cf0 gnuplot> C(x,y)=((Q1/(pi*u_H1*s_y1(x)*s_z1(x)))*exp(-H1**2/(2*s_z1(x)**2))*exp(-y**2/(2*s_y1(x)**2)))+20*((Q2/(pi*u_H2*s_y1(x)*s_z1(x)))*exp(-H2**2/(2*s_z1(x)**2))*exp(-y**2/(2*s_y1(x)**2)))\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\ri0\partightenfactor0
+\cf0 gnuplot> set samples 1000\
+\pard\pardeftab720\ri0\sl259\slmult1\partightenfactor0
+\cf0 gnuplot> splot[-1000:2000][-100:400]C(x,y)\
+\pard\pardeftab720\ri0\sl259\slmult1\partightenfactor0
+
+\f1 \cf0 gnuplot> set xlabel "x" \
+gnuplot> set ylabel "y"\
+gnuplot> set zlabel "C(x,y)"         \
+gnuplot> replot\
+gnuplot> unset pm3d\
+gnuplot> plot[-1000:2000]C(x,0)\
+gnuplot> replot\
+}
